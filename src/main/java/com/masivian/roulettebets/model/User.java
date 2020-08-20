@@ -12,9 +12,7 @@ import javax.persistence.Table;
 @Entity 
 @Table(name = "user")
 public class User implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
 	@Id 
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +20,9 @@ public class User implements Serializable {
 	private String name;
 	private Boolean status;
 	private Integer credit;
-	
 	public User(Long id) {
 		this.id = id;
 	}
-	
 	public User() {
 		super();
 	}
@@ -54,7 +50,4 @@ public class User implements Serializable {
 	public void setCredit(Integer credit) {
 		this.credit = credit;
 	}
-	
-	
-
 }

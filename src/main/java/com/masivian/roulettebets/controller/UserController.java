@@ -23,9 +23,7 @@ public class UserController {
 	final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private UserService userService;
-
 	ApiError apiError = null;
-
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<GeneralResponse<User>> saveUser(@RequestBody User user) {
 		HttpStatus status = HttpStatus.OK;
@@ -34,20 +32,16 @@ public class UserController {
 			user.setStatus(true);
 			response.setData(userService.save(user));
 			response.setSuccess(true);
-
 		} catch (Exception e) {
 			response.setSuccess(false);
 			apiError = new ApiError();
 			apiError.setMessageUser(e.getMessage().toString());
 			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
-
 		}
 
 		return new ResponseEntity<GeneralResponse<User>>(response, status);
-
 	}
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<GeneralResponse<List<User>>> findAll() {
 		HttpStatus status = HttpStatus.OK;
@@ -55,7 +49,6 @@ public class UserController {
 		try {
 			response.setData(userService.findAll());
 			response.setSuccess(true);
-
 		} catch (Exception e) {
 			response.setSuccess(false);
 			status = HttpStatus.BAD_REQUEST;

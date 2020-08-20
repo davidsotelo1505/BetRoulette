@@ -21,19 +21,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity 
 @Table(name = "bet")
 public class Bet implements Serializable {
-
-
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	private Long roulette_id;
-	//@ManyToOne
-    //@JoinColumn(name = "roulette_id")
-	//private Roulette roulette;
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;
@@ -44,29 +37,16 @@ public class Bet implements Serializable {
 	private String color_bet;
 	private Integer number_bet;
 	private String status;
-	
-	
 	public Bet() {
 		super();
 	}
-	
-//	@Basic(fetch = FetchType.LAZY)
-//	public Roulette getRoulette() {
-//		return roulette;
-//	}
-//
-//	public void setRoulette(Roulette roulette) {
-//		this.roulette = roulette;
-//	}
 	@Basic(fetch = FetchType.LAZY)
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -103,20 +83,10 @@ public class Bet implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Long getRoulette_id() {
 		return roulette_id;
 	}
-
 	public void setRoulette_id(Long roulette_id) {
 		this.roulette_id = roulette_id;
 	}
-	
-	
-	
-	
-	
-	
-	
-
 }

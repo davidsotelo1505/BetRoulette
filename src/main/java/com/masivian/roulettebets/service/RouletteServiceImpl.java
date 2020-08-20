@@ -18,12 +18,9 @@ import com.masivian.roulettebets.ServiceException;
 
 @Service(value = "rouletteService")
 public class RouletteServiceImpl implements RouletteService {
-
 	final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private RouletteRepository rouletteRepository;
-
 	@Override
 	public Roulette save(Roulette roulette) throws ServiceException {
 		log.info("Init save roulette");
@@ -36,15 +33,14 @@ public class RouletteServiceImpl implements RouletteService {
 
 		return roulette;
 	}
-
 	@Override
 	public List<Roulette> findAll() throws ServiceException {
 		log.info("List of roulette");
 		List<Roulette> rouletteList = new ArrayList<>();
 		rouletteList = rouletteRepository.findAll();
+		
 		return rouletteList;
 	}
-
 	@Override
 	public Roulette update(Long id) throws ServiceException {
 		log.info("Init update roulette");
@@ -58,6 +54,7 @@ public class RouletteServiceImpl implements RouletteService {
 					findToUpdate
 							.setUpdate_date(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
 					rouletteRepository.save(findToUpdate);
+					
 					return findToUpdate;
 				} else {
 					throw new ServiceException(new ApiError("Roulette is open", "Roulette is open", "2"));
@@ -68,9 +65,7 @@ public class RouletteServiceImpl implements RouletteService {
 		} catch (Exception e) {
 			throw new ServiceException("Failed to update roulette");
 		}
-
 	}
-
 	@Override
 	public Roulette close(Long id) throws ServiceException {
 		log.info("Init update roulette");
@@ -87,6 +82,7 @@ public class RouletteServiceImpl implements RouletteService {
 			}	else {
 				throw new ServiceException("Roulette is already close");
 			}
+			
 			return findToUpdate;
 		} catch (Exception e) {
 			if(e instanceof ServiceException) {
@@ -94,8 +90,5 @@ public class RouletteServiceImpl implements RouletteService {
 			}
 			throw new ServiceException("The bet is no posible");
 		}
-		
 	}
 }
-
-

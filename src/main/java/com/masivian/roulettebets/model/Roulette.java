@@ -3,29 +3,21 @@ package com.masivian.roulettebets.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity 
 @Table(name = "roulette")
 public class Roulette implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,20 +31,15 @@ public class Roulette implements Serializable {
 	@OneToMany
 	@JoinColumn(name="roulette_id")
     private List<Bet> bets;
-	
-	
 	public List<Bet> getBets() {
 		return bets;
 	}
-
 	public void setBets(List<Bet> bets) {
 		this.bets = bets;
 	}
-
 	public Roulette() {
 		super();
 	}
-	
 	public Long getId() {
 		return id;
 	}
@@ -77,10 +64,4 @@ public class Roulette implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
-	
-	
-
 }

@@ -7,6 +7,5 @@ import com.masivian.roulettebets.model.Roulette;
 
 @Repository
 public interface RouletteRepository extends JpaRepository<Roulette, Long> {
- 
 	Roulette getFindById(Long id);
 }

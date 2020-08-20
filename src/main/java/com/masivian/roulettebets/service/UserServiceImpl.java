@@ -15,12 +15,9 @@ import com.masivian.roulettebets.repository.UserRepository;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService{
-	
 	final Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	private UserRepository userRepository;
-
 	@Override
 	public User save(User user) throws ServiceException {
 		log.info("Init save user");
@@ -29,10 +26,9 @@ public class UserServiceImpl implements UserService{
 		} catch (Exception e) {
 			throw new ServiceException("Failed to save user");
 		}
-
+		
 		return user;
 	}
-
 	@Override
 	public List<User> findAll() throws ServiceException {
 		log.info("List of user");
@@ -41,5 +37,4 @@ public class UserServiceImpl implements UserService{
 		
 		return userList;
 	}
-
 }

@@ -18,19 +18,15 @@ import com.masivian.roulettebets.repository.UserRepository;
 
 @Service(value = "betService")
 public class BetServiceImpl implements BetService {
-
 	final Logger log = LoggerFactory.getLogger(this.getClass());
 	Random randNumber = new Random();
 	String[] strings = { "negro", "rojo" };
 	@Autowired
 	private BetRepository betRepository;
-
 	@Autowired
 	private RouletteRepository roueletteRepository;
-	
 	@Autowired
 	private UserRepository userRepository;;
-
 	@Override
 	public Bet save(Bet bet) throws ServiceException {
 		log.info("Init save bet");
@@ -47,38 +43,27 @@ public class BetServiceImpl implements BetService {
 					userAux.setCredit(user.getCredit()-bet.getAmount());
 					userRepository.save(userAux);
 					bet = betRepository.save(bet);
+					
 					return bet;
 				}
 				throw new ServiceException("Mount no valid or credit insufficients");
-				
-			}throw new ServiceException("Roulette is close");
-			
+			}
+			throw new ServiceException("Roulette is close");	
 		} catch (Exception e) {
 			if(e instanceof ServiceException) {
 				throw (ServiceException)e;
 			}
 			throw new ServiceException("The bet is no posible");
-		}
-
-		
+		}	
 	}
-
 	@Override
 	public List<Bet> findAll() throws ServiceException {
-
+		
 		return betRepository.findAll();
 	}
-
-	@Override
-	public Bet update(Long id) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public Bet getfindById(Long id) throws ServiceException {
 
 		return betRepository.getFindById(id);
 	}
-
 }

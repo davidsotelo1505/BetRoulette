@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "3daddfe1-64fd-40d7-bc2c-316e7be3ea3a",
+		"name": "RouletteBet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"David\",\r\n    \"credit\":\"2000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de ruletas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/roulette/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roulette",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrir ruleta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/roulette/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roulette",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear apuesta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"roulette_id\": 2,\n\t\t\"amount\": 700\n\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bet",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear ruleta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/roulette",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roulette"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista de apuestas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/bet",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"David\",\r\n    \"credit\":\"2000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cerrar apuestas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/roulette/closeRoulette/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roulette",
+						"closeRoulette",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

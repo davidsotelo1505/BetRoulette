@@ -22,14 +22,10 @@ import com.masivian.roulettebets.service.RouletteService;
 @RestController
 @RequestMapping("/roulette")
 public class RouletteController {
-	
 	final Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	private RouletteService rouletteService;
-	
 	ApiError apiError = null;
-		
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<GeneralResponse<Roulette>> saveRoulette(Roulette roulette){
 		HttpStatus status = HttpStatus.OK;
@@ -38,7 +34,6 @@ public class RouletteController {
 			rouletteService.save(roulette);
 			response.setData(roulette);
 			response.setSuccess(true);
-			
 		} catch (ServiceException e) {
 			response.setSuccess(false);
 			apiError = new ApiError();
@@ -48,10 +43,7 @@ public class RouletteController {
 		} 
 		
 		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
-		
 	}
-	
-	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
 	public ResponseEntity<GeneralResponse<List<Roulette>>> getUserList() {
 		HttpStatus status = HttpStatus.OK;
@@ -69,7 +61,6 @@ public class RouletteController {
 		
 		return new ResponseEntity<GeneralResponse<List<Roulette>>>(response, status);
 	}
-	
 	@RequestMapping(value = "/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<GeneralResponse<Roulette>> updateRoulette(@PathVariable(name = "id")Long id){
 		GeneralResponse<Roulette> response = new GeneralResponse<>();
@@ -85,9 +76,9 @@ public class RouletteController {
 			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
 		} 
+		
 		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
 	}
-	
 	@RequestMapping(value = "closeRoulette/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<GeneralResponse<Roulette>> closeRoulette(@PathVariable(name = "id")Long id){
 		GeneralResponse<Roulette> response = new GeneralResponse<>();
@@ -103,12 +94,7 @@ public class RouletteController {
 			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
 		} 
+		
 		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
 	}
-	
-
-	
-	
-	
-
 }

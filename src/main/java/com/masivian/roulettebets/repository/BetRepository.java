@@ -7,7 +7,5 @@ import com.masivian.roulettebets.model.Bet;
 
 @Repository
 public interface BetRepository extends JpaRepository<Bet, Long> {
-	
 	Bet getFindById(Long id);
-
 }

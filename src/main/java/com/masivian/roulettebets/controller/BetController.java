@@ -23,13 +23,10 @@ import com.masivian.roulettebets.service.BetService;
 @RestController
 @RequestMapping("/bet")
 public class BetController {
-	
 	final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private BetService betService;
-	
 	ApiError apiError = null;
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<GeneralResponse<Bet>> saveBet(@RequestBody Bet bet, @RequestHeader("id") Long id){
 		HttpStatus status = HttpStatus.OK;
@@ -50,9 +47,7 @@ public class BetController {
 		}
 		
 		return new ResponseEntity<GeneralResponse<Bet>>(response, status);
-		
 	}
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<GeneralResponse<List<Bet>>> findAll(){
 		HttpStatus status = HttpStatus.OK;
@@ -60,16 +55,11 @@ public class BetController {
 		try {
 			response.setData(betService.findAll());
 			response.setSuccess(true);
-			
 		} catch (Exception e) {
 			response.setSuccess(false);
 			status = HttpStatus.BAD_REQUEST;
 		}
 		
-		return new ResponseEntity<GeneralResponse<List<Bet>>>(response, status);
-		
+		return new ResponseEntity<GeneralResponse<List<Bet>>>(response, status);	
 	}
-	
-	
-
 }
