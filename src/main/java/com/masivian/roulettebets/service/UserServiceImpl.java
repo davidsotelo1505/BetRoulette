@@ -1,5 +1,6 @@
 package com.masivian.roulettebets.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.service.spi.ServiceException;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masivian.roulettebets.model.Roulette;
 import com.masivian.roulettebets.model.User;
 import com.masivian.roulettebets.repository.UserRepository;
 
@@ -21,14 +23,23 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(User user) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Init save user");
+		try {
+			userRepository.save(user);
+		} catch (Exception e) {
+			throw new ServiceException("Failed to save user");
+		}
+
+		return user;
 	}
 
 	@Override
 	public List<User> findAll() throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("List of user");
+		List<User> userList = new ArrayList<>();
+		userList = userRepository.findAll();
+		
+		return userList;
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masivian.roulettebets.ApiError;
 import com.masivian.roulettebets.GeneralResponse;
 import com.masivian.roulettebets.ServiceException;
 import com.masivian.roulettebets.model.Roulette;
@@ -26,6 +27,8 @@ public class RouletteController {
 	
 	@Autowired
 	private RouletteService rouletteService;
+	
+	ApiError apiError = null;
 		
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<GeneralResponse<Roulette>> saveRoulette(Roulette roulette){
@@ -37,8 +40,10 @@ public class RouletteController {
 			response.setSuccess(true);
 			
 		} catch (ServiceException e) {
-			response.setApiError(e.getApiError());
 			response.setSuccess(false);
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
 		} 
 		
@@ -55,9 +60,10 @@ public class RouletteController {
 			response.setData(rouletteService.findAll());
 			response.setSuccess(true);
 		} catch (ServiceException e) {
-			log.error(e.getApiError().toString());
 			response.setSuccess(false);
-			response.setApiError(e.getApiError());
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
 		}
 		
@@ -74,7 +80,27 @@ public class RouletteController {
 			response.setSuccess(true);
 		} catch (ServiceException e) {
 			response.setSuccess(false);
-			response.setApiError(e.getApiError());
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
+			status = HttpStatus.BAD_REQUEST;
+		} 
+		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
+	}
+	
+	@RequestMapping(value = "closeRoulette/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<GeneralResponse<Roulette>> closeRoulette(@PathVariable(name = "id")Long id){
+		GeneralResponse<Roulette> response = new GeneralResponse<>();
+		log.info(" Init updateRoulette");
+		HttpStatus status = HttpStatus.OK;
+		try {
+			response.setData(rouletteService.close(id));
+			response.setSuccess(true);
+		} catch (ServiceException e) {
+			response.setSuccess(false);
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
 		} 
 		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);

@@ -71,4 +71,31 @@ public class RouletteServiceImpl implements RouletteService {
 
 	}
 
+	@Override
+	public Roulette close(Long id) throws ServiceException {
+		log.info("Init update roulette");
+		Roulette findToUpdate = rouletteRepository.getFindById(id);
+		try {
+			if(null == findToUpdate) {
+				throw new ServiceException("Roulette not found");
+			}
+			if (findToUpdate.getStatus().equals("open")) {
+				findToUpdate.setStatus("close");
+				findToUpdate
+						.setUpdate_date(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+				rouletteRepository.save(findToUpdate);				
+			}	else {
+				throw new ServiceException("Roulette is already close");
+			}
+			return findToUpdate;
+		} catch (Exception e) {
+			if(e instanceof ServiceException) {
+				throw (ServiceException)e;
+			}
+			throw new ServiceException("The bet is no posible");
+		}
+		
+	}
 }
+
+

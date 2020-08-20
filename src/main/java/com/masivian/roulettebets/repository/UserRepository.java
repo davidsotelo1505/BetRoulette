@@ -7,5 +7,8 @@ import com.masivian.roulettebets.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+	
+	User getFindById(Long id);
+	
 
 }

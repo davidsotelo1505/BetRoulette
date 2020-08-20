@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -35,8 +36,8 @@ public class Roulette implements Serializable {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="UTC")
 	private Date update_date;
 	private String status;
-	@OneToMany(mappedBy = "id")
-	@Column(insertable = false, updatable = false)
+	@OneToMany
+	@JoinColumn(name="roulette_id")
     private List<Bet> bets;
 	
 	

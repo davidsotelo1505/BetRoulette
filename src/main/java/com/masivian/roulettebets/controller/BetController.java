@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masivian.roulettebets.ApiError;
 import com.masivian.roulettebets.GeneralResponse;
 import com.masivian.roulettebets.model.Bet;
 import com.masivian.roulettebets.model.Roulette;
+import com.masivian.roulettebets.model.User;
 import com.masivian.roulettebets.service.BetService;
 
 @RestController
@@ -25,18 +28,25 @@ public class BetController {
 	@Autowired
 	private BetService betService;
 	
+	ApiError apiError = null;
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<GeneralResponse<Bet>> saveBet(@RequestBody Bet bet){
+	public ResponseEntity<GeneralResponse<Bet>> saveBet(@RequestBody Bet bet, @RequestHeader("id") Long id){
 		HttpStatus status = HttpStatus.OK;
 		GeneralResponse<Bet> response = new GeneralResponse<>();
 		try {
-			betService.save(bet);
-			response.setData(bet);
+			bet.setUser(new User(id));
+			Bet betaux= betService.getfindById(betService.save(bet).getId());
+			response.setData(betaux);			
 			response.setSuccess(true);
 			
 		} catch (Exception e) {
 			response.setSuccess(false);
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
 			status = HttpStatus.BAD_REQUEST;
+			
 		}
 		
 		return new ResponseEntity<GeneralResponse<Bet>>(response, status);
