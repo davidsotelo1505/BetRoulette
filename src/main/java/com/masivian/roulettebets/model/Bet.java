@@ -3,12 +3,20 @@ package com.masivian.roulettebets.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity 
 @Table(name = "bet")
@@ -18,34 +26,39 @@ public class Bet implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private Integer id_bet;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "roulette_id")
-	private Roulette roulette;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	private Long roulette_id;
+	//@ManyToOne
+    //@JoinColumn(name = "roulette_id")
+	//private Roulette roulette;
+	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;
 	private Integer amount;
+	@CreationTimestamp
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="UTC")
 	private Date date_bet;
 	private String color_bet;
-	private Integer numbre_bet;
-	private Boolean status;
+	private Integer number_bet;
+	private String status;
 	
 	
 	public Bet() {
 		super();
 	}
 	
-	public Roulette getRoulette() {
-		return roulette;
-	}
-
-	public void setRoulette(Roulette roulette) {
-		this.roulette = roulette;
-	}
-
+//	@Basic(fetch = FetchType.LAZY)
+//	public Roulette getRoulette() {
+//		return roulette;
+//	}
+//
+//	public void setRoulette(Roulette roulette) {
+//		this.roulette = roulette;
+//	}
+	@Basic(fetch = FetchType.LAZY)
 	public User getUser() {
 		return user;
 	}
@@ -54,11 +67,11 @@ public class Bet implements Serializable {
 		this.user = user;
 	}
 
-	public Integer getId_bet() {
-		return id_bet;
+	public Long getId() {
+		return id;
 	}
-	public void setId_bet(Integer id_bet) {
-		this.id_bet = id_bet;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Integer getAmount() {
 		return amount;
@@ -78,17 +91,25 @@ public class Bet implements Serializable {
 	public void setColor_bet(String color_bet) {
 		this.color_bet = color_bet;
 	}
-	public Integer getNumbre_bet() {
-		return numbre_bet;
+	public Integer getNumber_bet() {
+		return number_bet;
 	}
-	public void setNumbre_bet(Integer numbre_bet) {
-		this.numbre_bet = numbre_bet;
+	public void setNumber_bet(Integer number_bet) {
+		this.number_bet = number_bet;
 	}
-	public Boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Long getRoulette_id() {
+		return roulette_id;
+	}
+
+	public void setRoulette_id(Long roulette_id) {
+		this.roulette_id = roulette_id;
 	}
 	
 	

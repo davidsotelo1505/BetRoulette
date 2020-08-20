@@ -2,8 +2,7 @@ package com.masivian.roulettebets.service;
 
 import java.util.List;
 
-import org.hibernate.service.spi.ServiceException;
-
+import com.masivian.roulettebets.ServiceException;
 import com.masivian.roulettebets.model.Bet;
 
 public interface BetService {
@@ -12,6 +11,9 @@ public interface BetService {
 	
 	List <Bet> findAll() throws ServiceException;
 	
+	Bet update(Long id) throws ServiceException;
+	
+	Bet getfindById(Long id) throws ServiceException;
 	
 
 }

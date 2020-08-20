@@ -13,7 +13,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	private Integer user_id;
+	private Long id;
 	private String name;
 	private Boolean status;
 	private Integer credit;
@@ -21,11 +21,11 @@ public class User implements Serializable {
 	public User() {
 		super();
 	}
-	public Integer getId_user() {
-		return user_id;
+	public Long getId() {
+		return id;
 	}
-	public void setId_user(Integer id_user) {
-		this.user_id = id_user;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;

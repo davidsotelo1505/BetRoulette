@@ -13,6 +13,8 @@ public class ApiError implements Serializable {
 	private String messageDeveloper;
 
 	private String code;
+	
+	
 
 	public ApiError() {
 	}
