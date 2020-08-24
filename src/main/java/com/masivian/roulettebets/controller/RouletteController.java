@@ -97,4 +97,23 @@ public class RouletteController {
 		
 		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
 	}
+
+	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
+	public ResponseEntity<GeneralResponse<Roulette>> getRouletteById(@PathVariable(name = "id")Long id){
+		GeneralResponse<Roulette> response = new GeneralResponse<>();
+		log.info(" Init get roulette");
+		HttpStatus status = HttpStatus.OK;
+		try {
+			response.setData(rouletteService.findById(id));
+			response.setSuccess(true);
+		} catch (ServiceException e) {
+			response.setSuccess(false);
+			apiError = new ApiError();
+			apiError.setMessageUser(e.getMessage().toString());	
+			response.setApiError(apiError);
+			status = HttpStatus.OK;
+		} 
+		
+		return new ResponseEntity<GeneralResponse<Roulette>>(response, status);
+	}
 }

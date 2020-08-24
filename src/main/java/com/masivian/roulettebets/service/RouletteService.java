@@ -12,4 +12,5 @@ public interface RouletteService {
 	List<Roulette> findAll() throws ServiceException;
 	Roulette update(Long id) throws ServiceException;
 	Roulette close(Long id) throws ServiceException;
+	Roulette findById(Long id) throws ServiceException;
 }

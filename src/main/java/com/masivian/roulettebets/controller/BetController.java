@@ -42,7 +42,7 @@ public class BetController {
 			apiError = new ApiError();
 			apiError.setMessageUser(e.getMessage().toString());	
 			response.setApiError(apiError);
-			status = HttpStatus.BAD_REQUEST;
+			status = HttpStatus.OK;
 			
 		}
 		

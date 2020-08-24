@@ -34,8 +34,8 @@ public class Bet implements Serializable {
 	@CreationTimestamp
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="UTC")
 	private Date date_bet;
-	private String color_bet;
-	private Integer number_bet;
+	private String color_bet_user;
+	private Integer number_bet_user;
 	private String status;
 	public Bet() {
 		super();
@@ -65,18 +65,6 @@ public class Bet implements Serializable {
 	public void setDate_bet(Date date_bet) {
 		this.date_bet = date_bet;
 	}
-	public String getColor_bet() {
-		return color_bet;
-	}
-	public void setColor_bet(String color_bet) {
-		this.color_bet = color_bet;
-	}
-	public Integer getNumber_bet() {
-		return number_bet;
-	}
-	public void setNumber_bet(Integer number_bet) {
-		this.number_bet = number_bet;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -88,5 +76,17 @@ public class Bet implements Serializable {
 	}
 	public void setRoulette_id(Long roulette_id) {
 		this.roulette_id = roulette_id;
+	}
+	public Integer getNumber_bet_user() {
+		return number_bet_user;
+	}
+	public void setNumber_bet_user(Integer number_bet_user) {
+		this.number_bet_user = number_bet_user;
+	}
+	public String getColor_bet_user() {
+		return color_bet_user;
+	}
+	public void setColor_bet_user(String color_bet_user) {
+		this.color_bet_user = color_bet_user;
 	}
 }

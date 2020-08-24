@@ -31,6 +31,8 @@ public class Roulette implements Serializable {
 	@OneToMany
 	@JoinColumn(name="roulette_id")
     private List<Bet> bets;
+	private int number_win;
+	private String color_win;
 	public List<Bet> getBets() {
 		return bets;
 	}
@@ -63,5 +65,17 @@ public class Roulette implements Serializable {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public int getNumber_win() {
+		return number_win;
+	}
+	public void setNumber_win(int number_win) {
+		this.number_win = number_win;
+	}
+	public String getColor_win() {
+		return color_win;
+	}
+	public void setColor_win(String color_win) {
+		this.color_win = color_win;
 	}
 }
